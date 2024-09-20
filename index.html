@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HORTASYNC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #00a25d;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 4px solid #0000002d;
+            border-radius: 20px;
+            padding: 15px;
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-top: 10px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #e5ff00; /* Amarelo ao passar o mouse */
+        }
+        .main-content {
+            padding: 20px;
+        }
+        .filters {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background-color: rgb(255, 255, 255);
+            border-radius: 8px;
+            box-shadow: 0 8px 7px rgba(0, 0, 0, 0.267);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card img {
+            width: 100%;
+            height: 200px; /* Aumentando a altura da imagem */
+            object-fit: cover;
+        }
+        .card-content {
+            padding: 15px;
+        }
+        .progress-bar {
+            height: 5px;
+            background-color: #ddd;
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 5px 0;
+        }
+        .progress {
+            height: 100%;
+            background-color: #008000;
+        }
+        .direcionamentos {
+            margin-right: 35px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="Imagens/Logo.png" alt="Logo" style="width: 60px; height: auto; margin-left: 20px;">
+            <span style="color: white;"></span>
+        </div>
+        
+        <nav class="direcionamentos">
+            <a href="#">Como ajudar</a>
+            <a href="#">Descubra</a>
+            <a href="#">Como funciona</a>
+            <a href="#">Minha conta</a>
+            <a href="#" style="color: #e5ff00;">Criar Doação</a>
+        </nav>
+    </header>
+    <div class="main-content">
+        <h1>Explore nossas hortas</h1>
+        <div class="filters">
+            <label for="state">Filtrar por:</label>
+            <select id="state">
+                <option>Qualquer estado</option>
+            </select>
+            <select>
+                <option>Criadas em qualquer data</option>
+            </select>
+            <select>
+                <option>Todas as categorias</option>
+            </select>
+            <button>Limpar filtros</button>
+        </div>
+        <div class="cards">
+            <div class="card" id="card-horta-1">
+                <img src="Imagens/Hortas/enxadas.png" alt="Imagem da horta">
+                <div class="card-content">
+                    <h2>Precisamos de enxadas!</h2>
+                    <p>Ferramentas para o cultivo.</p>
+                    <p>Horta Capim Macio</p>
+                    <p>Arrecadado: R$ 611,00</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 51%;"></div>
+                    </div>
+                    <p>Meta: R$ 1.200,00</p>
+                </div>
+            </div>
+            <div class="card" id="card-horta-2">
+                <img src="Imagens/Hortas/Recanto das Hortas.jpg" alt="Imagem da horta">
+                <div class="card-content">
+                    <h2>Precisamos de mudas de plantas!</h2>
+                    <p>Sementes para novas hortas.</p>
+                    <p>Recanto das Hortas</p>
+                    <p>Arrecadado: R$ 2.400,00</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 86%;"></div>
+                    </div>
+                    <p>Meta: R$ 2.800,00</p>
+                </div>
+            </div>
+            <div class="card" id="card-horta-3">
+                <img src="Imagens\Hortas\agua.jpeg" alt="Imagem da horta">
+                <div class="card-content">
+                    <h2>Precisamos de água potável!</h2>
+                    <p>Fornecimento para irrigação.</p>
+                    <p>Horta do Sol Nascente</p>
+                    <p>Arrecadado: R$ 1.500,00</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%;"></div>
+                    </div>
+                    <p>Meta: R$ 2.000,00</p>
+                </div>
+            </div>
+            <div class="card" id="card-horta-4">
+                <img src="Imagens\Hortas\fertilizantes.jpeg" alt="Imagem da horta">
+                <div class="card-content">
+                    <h2>Precisamos de fertilizantes!</h2>
+                    <p>Melhorar o solo.</p>
+                    <p>Horta Verde e Vida</p>
+                    <p>Arrecadado: R$ 800,00</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 40%;"></div>
+                    </div>
+                    <p>Meta: R$ 2.000,00</p>
+                </div>
+            </div>
+            <div class="card" id="card-horta-5">
+                <img src="Imagens\Hortas\ferramentasjardinagens.jpg" alt="Imagem da horta">
+                <div class="card-content">
+                    <h2>Precisamos de ferramentas de jardinagem!</h2>
+                    <p>Equipamentos essenciais.</p>
+                    <p>Horta do Pôr do Sol</p>
+                    <p>Arrecadado: R$ 500,00</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 25%;"></div>
+                    </div>
+                    <p>Meta: R$ 2.000,00</p>
+                </div>
+            </div>
+            <div class="card" id="card-horta-6">
+                <img src="Imagens\Hortas\mudasdearvore.png" alt="Imagem da horta">
+                <div class="card-content">
+                    <h2>Precisamos de mudas de árvores!</h2>
+                    <p>Reflorestamento da área.</p>
+                    <p>Horta da Esperança</p>
+                    <p>Arrecadado: R$ 1.200,00</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 60%;"></div>
+                    </div>
+                    <p>Meta: R$ 2.000,00</p>
+                </div>
+            </div>
+            <div class="card" id="card-horta-7">
+                <img src="Imagens\Hortas\materiaisjardinagem.jpg" alt="Imagem da horta">
+                <div class="card-content">
+                    <h2>Precisamos de materiais de jardinagem</h2>
+                    <p>Materiais essenciais.</p>
+                    <p>Horta do Bairro Verde</p>
+                    <p>Arrecadado: R$ 400,00</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 30%;"></div>
+                    </div>
+                    <p>Meta: R$ 1.000,00</p>
+                </div>
+            </div>
+            <div class="card" id="card-horta-8">
+                <img src="Imagens\Hortas\sementes.jpg" alt="Imagem da horta">
+                <div class="card-content">
+                    <h2>Precisamos de sementes de flores</h2>
+                    <p>Para embelezar a horta.</p>
+                    <p>Horta Flor do Campo</p>
+                    <p>Arrecadado: R$ 300,00</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 25%;"></div>
+                    </div>
+                    <p>Meta: R$ 1.200,00</p>
+                </div>
+            </div>
+            <div class="card" id="card-horta-9">
+                <img src="Imagens\Hortas\adubos.jpg" alt="Imagem da horta">
+                <div class="card-content">
+                    <h2>Precisamos de adubos orgânicos</h2>
+                    <p>Para uma horta saudável.</p>
+                    <p>Recanto das Hortas</p>
+                    <p>Arrecadado: R$ 1.200,00</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 60%;"></div>
+                    </div>
+                    <p>Meta: R$ 2.000,00</p>
+                </div>
+            </div>
+            <div class="card" id="card-horta-10">
+                <img src="Imagens\Hortas\compostagem.jpg" alt="Imagem da horta">
+                <div class="card-content">
+                    <h2>Precisamos de compostagem</h2>
+                    <p>Para enriquecer o solo.</p>
+                    <p>Horta Verde Vida</p>
+                    <p>Arrecadado: R$ 900,00</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 45%;"></div>
+                    </div>
+                    <p>Meta: R$ 2.000,00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
