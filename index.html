@@ -3,41 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HORTASYNC</title>
     <link rel="stylesheet" href="style.css">
+    <title>Doações para Hortas Comunitárias</title>
 </head>
 <body>
     <header>
-        <div class="logo">
-            <img src="Imagens/Logo.png" alt="Logo" style="width: 60px; height: auto; margin-left: 20px;">
-            <span style="color: white;"></span>
-        </div>
-        
-        <nav class="direcionamentos">
+        <img src="Imagens/Logo2.png" alt="Logo">
+        <nav>
+            <a href="#" class="active">Explorar</a>
             <a href="#">Como ajudar</a>
             <a href="#">Descubra</a>
             <a href="#">Como funciona</a>
+            <a href="#">Buscar</a>
             <a href="#">Minha conta</a>
-            <a href="#" style="color: #e5ff00;">Criar Doação</a>
         </nav>
     </header>
-    <div class="main-content">
-        <h1>Explore nossas hortas</h1>
-        <div class="filters">
-            <label for="state">Filtrar por:</label>
-            <select id="state">
-                <option>Qualquer estado</option>
-            </select>
-            <select>
-                <option>Criadas em qualquer data</option>
-            </select>
-            <select>
-                <option>Todas as categorias</option>
-            </select>
-            <button>Limpar filtros</button>
+    <div class="container">
+        <h1>Explore nossas hortas comunitárias</h1>
+        <div class="filter">
+            <div>
+                <select id="estado">
+                    <option>Qualquer estado</option>
+                </select>
+                <select id="data">
+                    <option>Criadas em qualquer data</option>
+                </select>
+                <select id="categoria">
+                    <option>Todas as categorias</option>
+                </select>
+            </div>
         </div>
-        <div class="cards"></div>
+        <div class="cards">
+            <div class="card" id="horta1">
+                <img src="Imagens/Hortas/agua.jpeg" alt="Doação de água potável">
+                <div class="card-content">
+                    <h3>Doação de água potável</h3>
+                    <p data-categoria-id="1">Infraestrutura - ID 10007</p>
+                    <p>Arrecadado: R$ 400,00</p>
+                    <div class="progress-bar">
+                        <div style="width: 40%;"></div>
+                    </div>
+                    <p>Meta: R$ 1.000,00</p>
+                </div>
+            </div>
+            <div class="card" id="horta2">
+                <img src="Imagens/Hortas/sementes.jpg" alt="Doação de sementes">
+                <div class="card-content">
+                    <h3>Precisamos de sementes</h3>
+                    <p data-categoria-id="2">Plantio - ID 10001</p>
+                    <p>Arrecadado: R$ 300,00</p>
+                    <div class="progress-bar">
+                        <div style="width: 30%;"></div>
+                    </div>
+                    <p>Meta: R$ 1.000,00</p>
+                </div>
+            </div>
+            <div class="card" id="horta3">
+                <img src="Imagens/Hortas/enxadas.png" alt="Doação de enxadas">
+                <div class="card-content">
+                    <h3>Precisamos de enxadas</h3>
+                    <p data-categoria-id="3">Ferramentas - ID 10002</p>
+                    <p>Arrecadado: R$ 500,00</p>
+                    <div class="progress-bar">
+                        <div style="width: 50%;"></div>
+                    </div>
+                    <p>Meta: R$ 1.000,00</p>
+                </div>
+            </div>
+            <div class="card" id="horta4">
+                <img src="Imagens/Hortas/adubo.jpg" alt="Doação de adubo">
+                <div class="card-content">
+                    <h3>Necessitamos de adubo</h3>
+                    <p data-categoria-id="4">Fertilizantes - ID 10003</p>
+                    <p>Arrecadado: R$ 200,00</p>
+                    <div class="progress-bar">
+                        <div style="width: 20%;"></div>
+                    </div>
+                    <p>Meta: R$ 1.000,00</p>
+                </div>
+            </div>
+            <div class="card" id="horta5">
+                <img src="Imagens/Hortas/mudasdearvore.png" alt="Doação de mudas de maçã">
+                <div class="card-content">
+                    <h3>Precisamos de mudas de maçã</h3>
+                    <p data-categoria-id="5">Mudas - ID 10004</p>
+                    <p>Arrecadado: R$ 700,00</p>
+                    <div class="progress-bar">
+                        <div style="width: 70%;"></div>
+                    </div>
+                    <p>Meta: R$ 1.000,00</p>
+                </div>
+            </div>
+            <div class="card" id="horta6">
+                <img src="Imagens/Hortas/ferramentasjardinagens.jpg" alt="Doação de ferramentas diversas">
+                <div class="card-content">
+                    <h3>Precisamos de ferramentas diversas</h3>
+                    <p data-categoria-id="3">Ferramentas - ID 10002</p>
+                    <p>Arrecadado: R$ 600,00</p>
+                    <div class="progress-bar">
+                        <div style="width: 60%;"></div>
+                    </div>
+                    <p>Meta: R$ 1.000,00</p>
+                </div>
+            </div>
+            <div class="card" id="horta7">
+                <img src="Imagens\Hortas\mudasdemorango.jpg" alt="Doação de mudas de Ipê">
+                <div class="card-content">
+                    <h3>Precisamos de mudas de morango!</h3>
+                    <p data-categoria-id="5">Mudas - ID 10004</p>
+                    <p>Arrecadado: R$ 400,00</p>
+                    <div class="progress-bar">
+                        <div style="width: 40%;"></div>
+                    </div>
+                    <p>Meta: R$ 1.000,00</p>
+                </div>
+            </div>
+            <div class="card" id="horta8">
+                <img src="Imagens/Hortas/irrigação.jpg" alt="Doação de sistema de irrigação">
+                <div class="card-content">
+                    <h3>Precisamos de sistema de irrigação</h3>
+                    <p data-categoria-id="6">Tecnologia - ID 10005</p>
+                    <p>Arrecadado: R$ 800,00</p>
+                    <div class="progress-bar">
+                        <div style="width: 80%;"></div>
+                    </div>
+                    <p>Meta: R$ 1.000,00</p>
+                </div>
+            </div>
+            <div class="card" id="horta9">
+                <img src="Imagens/Hortas/fertilizantes.jpeg" alt="Doação de adubo orgânico">
+                <div class="card-content">
+                    <h3>Precisamos de fertilizantes</h3>
+                    <p data-categoria-id="4">Fertilizantes - ID 10003</p>
+                    <p>Arrecadado: R$ 450,00</p>
+                    <div class="progress-bar">
+                        <div style="width: 45%;"></div>
+                    </div>
+                    <p>Meta: R$ 1.000,00</p>
+                </div>
+            </div>
+            <div class="card" id="horta10">
+                <img src="Imagens/Hortas/composteira.jpg" alt="Doação de composteira">
+                <div class="card-content">
+                    <h3>Precisamos de uma composteira</h3>
+                    <p data-categoria-id="7">Sustentabilidade - ID 10006</p>
+                    <p>Arrecadado: R$ 550,00</p>
+                    <div class="progress-bar">
+                        <div style="width: 55%;"></div>
+                    </div>
+                    <p>Meta: R$ 1.000,00</p>
+                </div>
+            </div>
+            <div class="card" id="horta11">
+                <img src="Imagens/Hortas/estufa.jpg" alt="Doação de estufa para hortas">
+                <div class="card-content">
+                    <h3>Precisamos de uma estufa</h3>
+                    <p data-categoria-id="8">Infraestrutura - ID 10007</p>
+                    <p>Arrecadado: R$ 650,00</p>
+                    <div class="progress-bar">
+                        <div style="width: 65%;"></div>
+                    </div>
+                    <p>Meta: R$ 1.000,00</p>
+                </div>
+            </div>
+            <div class="card" id="horta12">
+                <img src="Imagens/Hortas/telaparahorta.jpg" alt="Doação de cobertura para hortas">
+                <div class="card-content">
+                    <h3>Precisamos de cobertura para hortas</h3>
+                    <p data-categoria-id="9">Manutenção - ID 10008</p>
+                    <p>Arrecadado: R$ 700,00</p>
+                    <div class="progress-bar">
+                        <div style="width: 70%;"></div>
+                    </div>
+                    <p>Meta: R$ 1.000,00</p>
+                </div>
+            </div>
+            <div class="card" id="horta13">
+                <img src="Imagens\Hortas\aulabiologo.jpeg" alt="Doação para educação ambiental">
+                <div class="card-content">
+                    <h3>Contratação de um biólogo para aula</h3>
+                    <p data-categoria-id="10">Educação - ID 10009</p>
+                    <p>Arrecadado: R$ 350,00</p>
+                    <div class="progress-bar">
+                        <div style="width: 35%;"></div>
+                    </div>
+                    <p>Meta: R$ 1.000,00</p>
+                </div>
+            </div>
+            <div class="card" id="horta14">
+                <img src="Imagens\Hortas\iluminacao.jpeg" alt="Doação de tecnologia para hortas">
+                <div class="card-content">
+                    <h3>Precisamos de lâmpadas para hortaliças!</h3>
+                    <p data-categoria-id="6">Tecnologia - ID 10005</p>
+                    <p>Arrecadado: R$ 500,00</p>
+                    <div class="progress-bar">
+                        <div style="width: 50%;"></div>
+                    </div>
+                    <p>Meta: R$ 1.000,00</p>
+                </div>
+            </div>
+            <div class="card" id="horta15">
+                <img src="Imagens\Hortas\tabuas.jpg" alt="Doação de cobertura para hortas">
+                <div class="card-content">
+                    <h3>Precisamos de tábuas de madeira para divisória!</h3>
+                    <p data-categoria-id="9">Manutenção - ID 10008</p>
+                    <p>Arrecadado: R$ 700,00</p>
+                    <div class="progress-bar">
+                        <div style="width: 70%;"></div>
+                    </div>
+                    <p>Meta: R$ 1.000,00</p>
+                </div>
+            </div>
+        </div>
     </div>
-    <script src="script.js"></script>
 </body>
 </html>
