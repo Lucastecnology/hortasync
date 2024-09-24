@@ -3,218 +3,328 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Doações para Hortas Comunitárias</title>
+    <style>
+        /* Estilos gerais */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Estilo do header e navegação */
+        header {
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header img {
+            height: 60px;
+            width: auto;
+        }
+
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #333;
+            padding: 5px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: rgb(34, 179, 42);
+            text-decoration: underline;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        nav .active {
+            background-color: #4bac4c;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        /* Estilo do container */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Filtros */
+        .filter {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .filter select,
+        .filter button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        /* Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.274);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.301);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card-content h3 {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .card-content p {
+            font-size: 1em;
+            color: #000;
+            margin: 5px 0;
+        }
+
+        .card-content .categoria {
+            font-weight: bold;
+        }
+
+        .card-content .score {
+            font-weight: bold;
+        }
+
+        /* Botão de navegação */
+        .navigation-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navigation-buttons button {
+            padding: 10px 20px;
+            margin: 0 5px;
+            border: none;
+            background-color: #4bac4c;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .navigation-buttons button:hover {
+            background-color: #3a8a3a;
+        }
+    </style>
 </head>
+
 <body>
-    <header>
-        <img src="Imagens/Logo2.png" alt="Logo">
-        <nav>
-            <a href="#" class="active">Explorar</a>
-            <a href="#">Como ajudar</a>
-            <a href="#">Descubra</a>
-            <a href="#">Como funciona</a>
-            <a href="#">Buscar</a>
-            <a href="#">Minha conta</a>
-        </nav>
-    </header>
-    <div class="container">
-        <h1>Explore nossas hortas comunitárias</h1>
-        <div class="filter">
-            <div>
-                <select id="estado">
-                    <option>Qualquer estado</option>
-                </select>
-                <select id="data">
-                    <option>Criadas em qualquer data</option>
-                </select>
-                <select id="categoria">
-                    <option>Todas as categorias</option>
-                </select>
-            </div>
-        </div>
-        <div class="cards">
-            <div class="card" id="horta1">
-                <img src="Imagens/Hortas/agua.jpeg" alt="Doação de água potável">
-                <div class="card-content">
-                    <h3>Doação de água potável</h3>
-                    <p data-categoria-id="1">Infraestrutura - ID 10007</p>
-                    <p>Arrecadado: R$ 400,00</p>
-                    <div class="progress-bar">
-                        <div style="width: 40%;"></div>
-                    </div>
-                    <p>Meta: R$ 1.000,00</p>
-                </div>
-            </div>
-            <div class="card" id="horta2">
-                <img src="Imagens/Hortas/sementes.jpg" alt="Doação de sementes">
-                <div class="card-content">
-                    <h3>Precisamos de sementes</h3>
-                    <p data-categoria-id="2">Plantio - ID 10001</p>
-                    <p>Arrecadado: R$ 300,00</p>
-                    <div class="progress-bar">
-                        <div style="width: 30%;"></div>
-                    </div>
-                    <p>Meta: R$ 1.000,00</p>
-                </div>
-            </div>
-            <div class="card" id="horta3">
-                <img src="Imagens/Hortas/enxadas.png" alt="Doação de enxadas">
-                <div class="card-content">
-                    <h3>Precisamos de enxadas</h3>
-                    <p data-categoria-id="3">Ferramentas - ID 10002</p>
-                    <p>Arrecadado: R$ 500,00</p>
-                    <div class="progress-bar">
-                        <div style="width: 50%;"></div>
-                    </div>
-                    <p>Meta: R$ 1.000,00</p>
-                </div>
-            </div>
-            <div class="card" id="horta4">
-                <img src="Imagens/Hortas/adubo.jpg" alt="Doação de adubo">
-                <div class="card-content">
-                    <h3>Necessitamos de adubo</h3>
-                    <p data-categoria-id="4">Fertilizantes - ID 10003</p>
-                    <p>Arrecadado: R$ 200,00</p>
-                    <div class="progress-bar">
-                        <div style="width: 20%;"></div>
-                    </div>
-                    <p>Meta: R$ 1.000,00</p>
-                </div>
-            </div>
-            <div class="card" id="horta5">
-                <img src="Imagens/Hortas/mudasdearvore.png" alt="Doação de mudas de maçã">
-                <div class="card-content">
-                    <h3>Precisamos de mudas de maçã</h3>
-                    <p data-categoria-id="5">Mudas - ID 10004</p>
-                    <p>Arrecadado: R$ 700,00</p>
-                    <div class="progress-bar">
-                        <div style="width: 70%;"></div>
-                    </div>
-                    <p>Meta: R$ 1.000,00</p>
-                </div>
-            </div>
-            <div class="card" id="horta6">
-                <img src="Imagens/Hortas/ferramentasjardinagens.jpg" alt="Doação de ferramentas diversas">
-                <div class="card-content">
-                    <h3>Precisamos de ferramentas diversas</h3>
-                    <p data-categoria-id="3">Ferramentas - ID 10002</p>
-                    <p>Arrecadado: R$ 600,00</p>
-                    <div class="progress-bar">
-                        <div style="width: 60%;"></div>
-                    </div>
-                    <p>Meta: R$ 1.000,00</p>
-                </div>
-            </div>
-            <div class="card" id="horta7">
-                <img src="Imagens\Hortas\mudasdemorango.jpg" alt="Doação de mudas de Ipê">
-                <div class="card-content">
-                    <h3>Precisamos de mudas de morango!</h3>
-                    <p data-categoria-id="5">Mudas - ID 10004</p>
-                    <p>Arrecadado: R$ 400,00</p>
-                    <div class="progress-bar">
-                        <div style="width: 40%;"></div>
-                    </div>
-                    <p>Meta: R$ 1.000,00</p>
-                </div>
-            </div>
-            <div class="card" id="horta8">
-                <img src="Imagens/Hortas/irrigação.jpg" alt="Doação de sistema de irrigação">
-                <div class="card-content">
-                    <h3>Precisamos de sistema de irrigação</h3>
-                    <p data-categoria-id="6">Tecnologia - ID 10005</p>
-                    <p>Arrecadado: R$ 800,00</p>
-                    <div class="progress-bar">
-                        <div style="width: 80%;"></div>
-                    </div>
-                    <p>Meta: R$ 1.000,00</p>
-                </div>
-            </div>
-            <div class="card" id="horta9">
-                <img src="Imagens/Hortas/fertilizantes.jpeg" alt="Doação de adubo orgânico">
-                <div class="card-content">
-                    <h3>Precisamos de fertilizantes</h3>
-                    <p data-categoria-id="4">Fertilizantes - ID 10003</p>
-                    <p>Arrecadado: R$ 450,00</p>
-                    <div class="progress-bar">
-                        <div style="width: 45%;"></div>
-                    </div>
-                    <p>Meta: R$ 1.000,00</p>
-                </div>
-            </div>
-            <div class="card" id="horta10">
-                <img src="Imagens/Hortas/composteira.jpg" alt="Doação de composteira">
-                <div class="card-content">
-                    <h3>Precisamos de uma composteira</h3>
-                    <p data-categoria-id="7">Sustentabilidade - ID 10006</p>
-                    <p>Arrecadado: R$ 550,00</p>
-                    <div class="progress-bar">
-                        <div style="width: 55%;"></div>
-                    </div>
-                    <p>Meta: R$ 1.000,00</p>
-                </div>
-            </div>
-            <div class="card" id="horta11">
-                <img src="Imagens/Hortas/estufa.jpg" alt="Doação de estufa para hortas">
-                <div class="card-content">
-                    <h3>Precisamos de uma estufa</h3>
-                    <p data-categoria-id="8">Infraestrutura - ID 10007</p>
-                    <p>Arrecadado: R$ 650,00</p>
-                    <div class="progress-bar">
-                        <div style="width: 65%;"></div>
-                    </div>
-                    <p>Meta: R$ 1.000,00</p>
-                </div>
-            </div>
-            <div class="card" id="horta12">
-                <img src="Imagens/Hortas/telaparahorta.jpg" alt="Doação de cobertura para hortas">
-                <div class="card-content">
-                    <h3>Precisamos de cobertura para hortas</h3>
-                    <p data-categoria-id="9">Manutenção - ID 10008</p>
-                    <p>Arrecadado: R$ 700,00</p>
-                    <div class="progress-bar">
-                        <div style="width: 70%;"></div>
-                    </div>
-                    <p>Meta: R$ 1.000,00</p>
-                </div>
-            </div>
-            <div class="card" id="horta13">
-                <img src="Imagens\Hortas\aulabiologo.jpeg" alt="Doação para educação ambiental">
-                <div class="card-content">
-                    <h3>Contratação de um biólogo para aula</h3>
-                    <p data-categoria-id="10">Educação - ID 10009</p>
-                    <p>Arrecadado: R$ 350,00</p>
-                    <div class="progress-bar">
-                        <div style="width: 35%;"></div>
-                    </div>
-                    <p>Meta: R$ 1.000,00</p>
-                </div>
-            </div>
-            <div class="card" id="horta14">
-                <img src="Imagens\Hortas\iluminacao.jpeg" alt="Doação de tecnologia para hortas">
-                <div class="card-content">
-                    <h3>Precisamos de lâmpadas para hortaliças!</h3>
-                    <p data-categoria-id="6">Tecnologia - ID 10005</p>
-                    <p>Arrecadado: R$ 500,00</p>
-                    <div class="progress-bar">
-                        <div style="width: 50%;"></div>
-                    </div>
-                    <p>Meta: R$ 1.000,00</p>
-                </div>
-            </div>
-            <div class="card" id="horta15">
-                <img src="Imagens\Hortas\tabuas.jpg" alt="Doação de cobertura para hortas">
-                <div class="card-content">
-                    <h3>Precisamos de tábuas de madeira para divisória!</h3>
-                    <p data-categoria-id="9">Manutenção - ID 10008</p>
-                    <p>Arrecadado: R$ 700,00</p>
-                    <div class="progress-bar">
-                        <div style="width: 70%;"></div>
-                    </div>
-                    <p>Meta: R$ 1.000,00</p>
-                </div>
-            </div>
+
+<header>
+    <img src="Imagens/Logo2.png" alt="Logo">
+    <nav>
+        <a href="#" class="active">Explorar</a>
+        <a href="#">Como ajudar</a>
+        <a href="#">Descubra</a>
+        <a href="#">Como funciona</a>
+        <a href="#">Buscar</a>
+        <a href="#">Minha conta</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h1>Explore nossas hortas comunitárias</h1>
+
+    <div class="filter">
+        <div>
+            <select id="categoria" onchange="filtrarPorCategoria()">
+                <option value="todos">Todas as categorias</option>
+                <option value="infraestrutura">Infraestrutura</option>
+                <option value="plantio">Plantio</option>
+                <option value="ferramentas">Ferramentas</option>
+                <option value="fertilizantes">Fertilizantes</option>
+                <option value="mudas">Mudas</option>
+                <option value="tecnologia">Tecnologia</option>
+                <option value="sustentabilidade">Sustentabilidade</option>
+                <option value="manutencao">Manutenção</option>
+                <option value="educacao">Educação</option>
+            </select>
         </div>
     </div>
+
+    <div class="cards" id="cards-container">
+        <!-- Cards serão adicionados dinamicamente -->
+    </div>
+
+    <div class="navigation-buttons">
+        <button onclick="mostrarProximaPagina()">Próxima Página</button>
+    </div>
+</div>
+
+<script>
+    const pesos = {
+        cliques: 1.0,
+        doacoes: 2.0,
+        mediaDoacoesMes: 1.5,
+        visitantesUnicos: 1.2,
+        taxaRetorno: 1.8,
+        eventos: 1.3
+    };
+
+    const cardsData = [
+        { categoria: 'infraestrutura', title: 'Doação de água potável', cliques: 100, doacoes: 50, mediaDoacoesMes: 5, visitantesUnicos: 200, taxaRetorno: 0.5, eventos: 2, img: 'Imagens/Hortas/agua.jpeg' },
+        { categoria: 'infraestrutura', title: 'Construção de poço', cliques: 90, doacoes: 45, mediaDoacoesMes: 4.5, visitantesUnicos: 180, taxaRetorno: 0.45, eventos: 1, img: 'Imagens/Hortas/poco.jpg' },
+        { categoria: 'plantio', title: 'Precisamos de sementes', cliques: 80, doacoes: 30, mediaDoacoesMes: 3, visitantesUnicos: 150, taxaRetorno: 0.3, eventos: 1, img: 'Imagens/Hortas/sementes.jpg' },
+        { categoria: 'plantio', title: 'Cultivo de hortaliças', cliques: 85, doacoes: 35, mediaDoacoesMes: 3.5, visitantesUnicos: 160, taxaRetorno: 0.35, eventos: 2, img: 'Imagens/Hortas/hortalicas.jpg' },
+        { categoria: 'ferramentas', title: 'Precisamos de enxadas', cliques: 120, doacoes: 60, mediaDoacoesMes: 6, visitantesUnicos: 250, taxaRetorno: 0.6, eventos: 3, img: 'Imagens/Hortas/enxadas.png' },
+        { categoria: 'fertilizantes', title: 'Necessitamos de adubo', cliques: 170, doacoes: 100, mediaDoacoesMes: 10, visitantesUnicos: 300, taxaRetorno: 0.9, eventos: 5, img: 'Imagens/Hortas/adubo.jpg' },
+        { categoria: 'mudas', title: 'Precisamos de mudas de maçã', cliques: 90, doacoes: 40, mediaDoacoesMes: 4, visitantesUnicos: 180, taxaRetorno: 0.4, eventos: 2, img: 'Imagens/Hortas/mudasdearvore.png' },
+        { categoria: 'tecnologia', title: 'Precisamos de sistema de irrigação', cliques: 130, doacoes: 70, mediaDoacoesMes: 7, visitantesUnicos: 300, taxaRetorno: 0.7, eventos: 4, img: 'Imagens/Hortas/irrigacao.jpg' },
+        { categoria: 'tecnologia', title: 'Instalação de sensores de umidade', cliques: 115, doacoes: 65, mediaDoacoesMes: 6.5, visitantesUnicos: 270, taxaRetorno: 0.65, eventos: 3, img: 'Imagens/Hortas/sensores.jpg' },
+        { categoria: 'sustentabilidade', title: 'Precisamos de uma composteira', cliques: 110, doacoes: 55, mediaDoacoesMes: 5.5, visitantesUnicos: 220, taxaRetorno: 0.55, eventos: 2, img: 'Imagens/Hortas/composteira.jpg' },
+        { categoria: 'educacao', title: 'Contratação de um biólogo para aula', cliques: 75, doacoes: 35, mediaDoacoesMes: 3.5, visitantesUnicos: 130, taxaRetorno: 0.35, eventos: 1, img: 'Imagens/Hortas/aulabiologo.jpeg' },
+        { categoria: 'manutencao', title: 'Reparo de cercas', cliques: 520, doacoes: 20, mediaDoacoesMes: 2, visitantesUnicos: 90, taxaRetorno: 0.2, eventos: 0, img: 'Imagens/Hortas/cerca.jpg' },
+        { categoria: 'manutencao', title: 'Manutenção de ferramentas', cliques: 60, doacoes: 25, mediaDoacoesMes: 2.5, visitantesUnicos: 95, taxaRetorno: 0.25, eventos: 1, img: 'Imagens/Hortas/ferramentas.jpg' },
+        { categoria: 'tecnologia', title: 'Automação de estufas', cliques: 140, doacoes: 80, mediaDoacoesMes: 8, visitantesUnicos: 350, taxaRetorno: 0.8, eventos: 5, img: 'Imagens/Hortas/automacao.jpg' },
+        { categoria: 'ferramentas', title: 'Compra de pás', cliques: 1120, doacoes: 50, mediaDoacoesMes: 5, visitantesUnicos: 230, taxaRetorno: 0.5, eventos: 2, img: 'Imagens/Hortas/pas.jpg' },
+        { categoria: 'fertilizantes', title: 'Aquisição de fertilizantes orgânicos', cliques: 85, doacoes: 40, mediaDoacoesMes: 4, visitantesUnicos: 150, taxaRetorno: 0.4, eventos: 1, img: 'Imagens/Hortas/fertilizantes.jpg' },
+        { categoria: 'mudas', title: 'Plantio de árvores frutíferas', cliques: 95, doacoes: 45, mediaDoacoesMes: 4.5, visitantesUnicos: 190, taxaRetorno: 0.45, eventos: 2, img: 'Imagens/Hortas/arvores.jpg' }
+    ];
+
+    let paginaAtual = 0;
+    const itensPorPagina = 6;
+
+    function calcularScore(card) {
+        return (pesos.cliques * card.cliques) +
+               (pesos.doacoes * card.doacoes) +
+               (pesos.mediaDoacoesMes * card.mediaDoacoesMes) +
+               (pesos.visitantesUnicos * card.visitantesUnicos) +
+               (pesos.taxaRetorno * card.taxaRetorno) +
+               (pesos.eventos * card.eventos);
+    }
+
+    function filtrarPorCategoria() {
+        const categoriaSelecionada = document.getElementById('categoria').value;
+        let cardsFiltrados = cardsData;
+
+        if (categoriaSelecionada !== 'todos') {
+            cardsFiltrados = cardsData.filter(card => card.categoria === categoriaSelecionada);
+        }
+
+        // Ordenar os cards com base no score de recomendação
+        cardsFiltrados.sort((a, b) => {
+            const scoreA = calcularScore(a);
+            const scoreB = calcularScore(b);
+            return scoreB - scoreA;
+        });
+
+        // Encontrar a categoria mais recomendada
+        if (cardsFiltrados.length > 0) {
+            const categoriaMaisRecomendada = cardsFiltrados[0].categoria;
+
+            // Reordenar para que todos os cards dessa categoria apareçam primeiro
+            cardsFiltrados = cardsFiltrados.sort((a, b) => {
+                if (a.categoria === categoriaMaisRecomendada && b.categoria !== categoriaMaisRecomendada) {
+                    return -1;
+                }
+                if (a.categoria !== categoriaMaisRecomendada && b.categoria === categoriaMaisRecomendada) {
+                    return 1;
+                }
+                return calcularScore(b) - calcularScore(a);
+            });
+        }
+
+        exibirCards(cardsFiltrados);
+    }
+
+    function exibirCards(cards) {
+        const cardsContainer = document.getElementById('cards-container');
+        cardsContainer.innerHTML = '';
+
+        const inicio = paginaAtual * itensPorPagina;
+        const fim = Math.min(inicio + itensPorPagina, cards.length);
+
+        for (let i = inicio; i < fim; i++) {
+            const card = cards[i];
+
+            const cardElement = document.createElement('div');
+            cardElement.classList.add('card');
+            cardElement.setAttribute('data-categoria', card.categoria);
+
+            const imgElement = document.createElement('img');
+            imgElement.src = card.img;
+            imgElement.alt = card.title;
+            cardElement.appendChild(imgElement);
+
+            const cardContent = document.createElement('div');
+            cardContent.classList.add('card-content');
+
+            const cardTitle = document.createElement('h3');
+            cardTitle.textContent = card.title;
+            cardContent.appendChild(cardTitle);
+
+            const cardCategoria = document.createElement('p');
+            cardCategoria.textContent = `Categoria: ${card.categoria}`;
+            cardCategoria.classList.add('categoria');
+            cardContent.appendChild(cardCategoria);
+
+            const cardScore = document.createElement('p');
+            cardScore.textContent = `Score de Recomendação: ${calcularScore(card).toFixed(2)}`;
+            cardScore.classList.add('score');
+            cardContent.appendChild(cardScore);
+
+            cardElement.appendChild(cardContent);
+
+            cardsContainer.appendChild(cardElement);
+        }
+    }
+
+    function mostrarProximaPagina() {
+        const categoriaSelecionada = document.getElementById('categoria').value;
+        let cardsFiltrados = cardsData;
+
+        if (categoriaSelecionada !== 'todos') {
+            cardsFiltrados = cardsData.filter(card => card.categoria === categoriaSelecionada);
+        }
+
+        const totalPaginas = Math.ceil(cardsFiltrados.length / itensPorPagina);
+        paginaAtual = (paginaAtual + 1) % totalPaginas;
+
+        exibirCards(cardsFiltrados);
+    }
+
+    filtrarPorCategoria();
+</script>
+
 </body>
 </html>
