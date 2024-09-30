@@ -87,6 +87,7 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.274);
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
         }
 
         .card:hover {
@@ -218,7 +219,7 @@
     ];
 
     let paginaAtual = 0;
-    const itensPorPagina = 116;
+    const itensPorPagina = 16;
 
     function calcularScore(card) {
         return (pesos.cliques * card.cliques) +
@@ -276,6 +277,12 @@
             const cardElement = document.createElement('div');
             cardElement.classList.add('card');
             cardElement.setAttribute('data-categoria', card.categoria);
+
+            // Add click event to update score
+            cardElement.addEventListener('click', () => {
+                card.cliques += 1; // Simulate database update
+                filtrarPorCategoria(); // Refresh the display
+            });
 
             const imgElement = document.createElement('img');
             imgElement.src = card.img;
