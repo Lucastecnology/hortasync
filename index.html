@@ -343,55 +343,68 @@
         const cardsContainer = document.getElementById('cards-container');
         cardsContainer.innerHTML = '';
 
-        const inicio = paginaAtual * itensPorPagina;
-        const fim = Math.min(inicio + itensPorPagina, cards.length);
+        let maiorScoreCard = cards[0]; // Card com o maior score
+        const mesmaCategoria = cards.filter(card => card.categoria === maiorScoreCard.categoria && card !== maiorScoreCard);
+        const outrosCards = cards.filter(card => card.categoria !== maiorScoreCard.categoria);
 
-        for (let i = inicio; i < fim; i++) {
-            const card = cards[i];
+        // Exibir o card com maior score primeiro
+        inserirCard(maiorScoreCard);
 
-            const cardElement = document.createElement('div');
-            cardElement.classList.add('card');
-            cardElement.setAttribute('data-categoria', card.categoria);
+        // Em seguida, exibir outros cards da mesma categoria
+        mesmaCategoria.forEach(card => {
+            inserirCard(card);
+        });
 
-            // Add click event to update score
-            cardElement.addEventListener('click', () => {
-                card.cliques += 1; // Simulate database update
-                filtrarPorCategoria(); // Refresh the display
-            });
+        // Exibir os outros cards
+        outrosCards.forEach(card => {
+            inserirCard(card);
+        });
+    }
 
-            const imgElement = document.createElement('img');
-            imgElement.src = card.img;
-            imgElement.alt = card.title;
-            cardElement.appendChild(imgElement);
+    function inserirCard(card) {
+        const cardsContainer = document.getElementById('cards-container');
 
-            const cardContent = document.createElement('div');
-            cardContent.classList.add('card-content');
+        const cardElement = document.createElement('div');
+        cardElement.classList.add('card');
+        cardElement.setAttribute('data-categoria', card.categoria);
 
-            const cardTitle = document.createElement('h3');
-            cardTitle.textContent = card.title;
-            cardContent.appendChild(cardTitle);
+        // Add click event to update score
+        cardElement.addEventListener('click', () => {
+            card.cliques += 1; // Simulate database update
+            filtrarPorCategoria(); // Refresh the display
+        });
 
-            const cardCategoria = document.createElement('p');
-            cardCategoria.textContent = `Categoria: ${card.categoria}`;
-            cardCategoria.classList.add('categoria');
-            cardContent.appendChild(cardCategoria);
+        const imgElement = document.createElement('img');
+        imgElement.src = card.img;
+        imgElement.alt = card.title;
+        cardElement.appendChild(imgElement);
 
-            const cardScore = document.createElement('p');
-            cardScore.textContent = `Score de Recomendação: ${calcularScore(card).toFixed(2)}`;
-            cardScore.classList.add('score');
-            cardContent.appendChild(cardScore);
+        const cardContent = document.createElement('div');
+        cardContent.classList.add('card-content');
 
-            cardElement.appendChild(cardContent);
+        const cardTitle = document.createElement('h3');
+        cardTitle.textContent = card.title;
+        cardContent.appendChild(cardTitle);
 
-            cardsContainer.appendChild(cardElement);
-        }
+        const cardCategoria = document.createElement('p');
+        cardCategoria.textContent = `Categoria: ${card.categoria}`;
+        cardCategoria.classList.add('categoria');
+        cardContent.appendChild(cardCategoria);
+
+        const cardScore = document.createElement('p');
+        cardScore.textContent = `Score de Recomendação: ${calcularScore(card).toFixed(2)}`;
+        cardScore.classList.add('score');
+        cardContent.appendChild(cardScore);
+
+        cardElement.appendChild(cardContent);
+
+        cardsContainer.appendChild(cardElement);
     }
 
     // Função de IA para responder qual horta recomendar
     function obterHortaMaiorScore() {
         let maiorScore = -1;
         let hortaRecomendada = null;
-
         cardsData.forEach(card => {
             const score = calcularScore(card);
             if (score > maiorScore) {
@@ -400,60 +413,51 @@
             }
         });
 
-        return hortaRecomendada ? hortaRecomendada.title : 'Nenhuma horta disponível no momento';
+        return hortaRecomendada;
     }
 
-    // Função para abrir/fechar o chat
-    const chatbotBtn = document.getElementById('chatbot-btn');
-    const chatbox = document.getElementById('chatbox');
-    chatbotBtn.addEventListener('click', () => {
-    chatbox.style.display = chatbox.style.display === 'none' ? 'flex' : 'none';
-});
-    // Função para enviar mensagem no chat
     function enviarMensagem() {
-        const chatBody = document.getElementById('chatbox-body');
-        const input = document.getElementById('chat-input');
-        const mensagem = input.value.trim();
+        const chatInput = document.getElementById('chat-input');
+        const mensagem = chatInput.value.trim();
 
-        if (mensagem === '') {
-            return;
-        }
+        if (mensagem) {
+            adicionarMensagem(mensagem, 'user');
+            chatInput.value = '';
 
-        // Adiciona a mensagem do usuário no chat
-        const userMessage = document.createElement('div');
-        userMessage.style.marginBottom = '10px';
-        userMessage.style.textAlign = 'right';
-        userMessage.innerHTML = `<strong>Você:</strong> ${mensagem}`;
-        chatBody.prepend(userMessage);
-
-        // Limpa o campo de entrada
-        input.value = '';
-
-        // Resposta automática do bot
-        if (mensagem.toLowerCase().includes('qual horta que recomenda para fazer uma doação')) {
-            const hortaRecomendada = obterHortaMaiorScore();
-
-            setTimeout(() => {
-                const botMessage = document.createElement('div');
-                botMessage.style.marginBottom = '10px';
-                botMessage.style.textAlign = 'left';
-                botMessage.innerHTML = `<strong>Bot:</strong> A horta que recomendamos para doação é: <strong>${hortaRecomendada}</strong>`;
-                chatBody.prepend(botMessage);
-            }, 1000);
-        } else {
-            setTimeout(() => {
-                const botMessage = document.createElement('div');
-                botMessage.style.marginBottom = '10px';
-                botMessage.style.textAlign = 'left';
-                botMessage.innerHTML = `<strong>Bot:</strong> Desculpe, não entendi sua pergunta.`;
-                chatBody.prepend(botMessage);
-            }, 1000);
+            if (mensagem.toLowerCase().includes('recomendar') || mensagem.toLowerCase().includes('melhor')) {
+                const horta = obterHortaMaiorScore();
+                setTimeout(() => {
+                    adicionarMensagem(`Recomendamos a horta "${horta.title}" , ela tem a maior probabilidade de você gostar ${calcularScore(horta).toFixed(2)}.`, 'bot');
+                }, 1000);
+            } else {
+                setTimeout(() => {
+                    adicionarMensagem('Desculpe, não entendi sua pergunta. Tente perguntar sobre recomendações de hortas.', 'bot');
+                }, 1000);
+            }
         }
     }
 
-    // Carregar os cards automaticamente na inicialização
+    function adicionarMensagem(texto, remetente) {
+        const chatboxBody = document.getElementById('chatbox-body');
+        const mensagemElement = document.createElement('div');
+
+        mensagemElement.classList.add('mensagem');
+        mensagemElement.classList.add(remetente); // 'user' ou 'bot'
+        mensagemElement.textContent = texto;
+
+        chatboxBody.appendChild(mensagemElement);
+        chatboxBody.scrollTop = chatboxBody.scrollHeight;
+    }
+
+    document.getElementById('chatbot-btn').addEventListener('click', () => {
+        const chatbox = document.getElementById('chatbox');
+        chatbox.style.display = chatbox.style.display === 'none' || chatbox.style.display === '' ? 'flex' : 'none';
+    });
+
+    // Inicializar a página exibindo todos os cards
     filtrarPorCategoria();
 </script>
 
 </body>
 </html>
+        
