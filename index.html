@@ -11,6 +11,7 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+            position: relative;
         }
 
         /* Estilo do header e navegação */
@@ -146,6 +147,79 @@
         .navigation-buttons button:hover {
             background-color: #3a8a3a;
         }
+
+        /* Estilo do botão de chat IA */
+        .chatbot-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(to right, #34a853, #5bc6ff);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Estilo da aba de chat */
+        .chatbox {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 350px;
+            max-width: 90%;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            display: none;
+            flex-direction: column;
+        }
+
+        .chatbox-header {
+            background-color: #34a853;
+            color: white;
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            font-size: 18px;
+        }
+
+        .chatbox-body {
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        .chatbox-footer {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .chatbox-footer input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .chatbox-footer button {
+            padding: 10px;
+            background-color: #34a853;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -188,6 +262,23 @@
     </div>
 </div>
 
+<!-- Botão de chat IA -->
+<button class="chatbot-button" id="chatbot-btn">🤖</button>
+
+<!-- Janela de chat -->
+<div class="chatbox" id="chatbox">
+    <div class="chatbox-header">
+        Assistente Virtual
+    </div>
+    <div class="chatbox-body" id="chatbox-body">
+        <!-- Mensagens do chat -->
+    </div>
+    <div class="chatbox-footer">
+        <input type="text" id="chat-input" placeholder="Digite sua pergunta..." />
+        <button onclick="enviarMensagem()">Enviar</button>
+    </div>
+</div>
+
 <script>
     const pesos = {
         cliques: 1.0,
@@ -205,7 +296,7 @@
         { categoria: 'plantio', title: 'Cultivo de hortaliças', cliques: 85, doacoes: 35, mediaDoacoesMes: 3.5, visitantesUnicos: 160, taxaRetorno: 0.35, eventos: 2, img: 'Imagens/Hortas/hortalicas.jpg' },
         { categoria: 'ferramentas', title: 'Precisamos de enxadas', cliques: 120, doacoes: 60, mediaDoacoesMes: 6, visitantesUnicos: 250, taxaRetorno: 0.6, eventos: 3, img: 'Imagens/Hortas/enxadas.png' },
         { categoria: 'fertilizantes', title: 'Necessitamos de adubo', cliques: 170, doacoes: 100, mediaDoacoesMes: 10, visitantesUnicos: 300, taxaRetorno: 0.9, eventos: 5, img: 'Imagens/Hortas/adubo.jpg' },
-        { categoria: 'mudas', title: 'Precisamos de mudas de maçã', cliques: 90, doacoes: 40, mediaDoacoesMes: 4, visitantesUnicos: 180, taxaRetorno: 0.4, eventos: 2, img: 'Imagens/Hortas/mudasdearvore.png' },
+        { categoria: 'mudas', title: 'Precisamos de mudas de maçã', cliques: 920, doacoes: 40, mediaDoacoesMes: 4, visitantesUnicos: 180, taxaRetorno: 0.4, eventos: 2, img: 'Imagens/Hortas/mudasdearvore.png' },
         { categoria: 'tecnologia', title: 'Precisamos de sistema de irrigação', cliques: 130, doacoes: 70, mediaDoacoesMes: 7, visitantesUnicos: 300, taxaRetorno: 0.7, eventos: 4, img: 'Imagens/Hortas/Irrigacao.jpg' },
         { categoria: 'tecnologia', title: 'Instalação de sensores de umidade', cliques: 115, doacoes: 65, mediaDoacoesMes: 6.5, visitantesUnicos: 270, taxaRetorno: 0.65, eventos: 3, img: 'Imagens/Hortas/sensoresdeumidade.jpg' },
         { categoria: 'sustentabilidade', title: 'Precisamos de uma composteira', cliques: 110, doacoes: 55, mediaDoacoesMes: 5.5, visitantesUnicos: 220, taxaRetorno: 0.55, eventos: 2, img: 'Imagens/Hortas/composteira.jpg' },
@@ -244,22 +335,6 @@
             const scoreB = calcularScore(b);
             return scoreB - scoreA;
         });
-
-        // Encontrar a categoria mais recomendada
-        if (cardsFiltrados.length > 0) {
-            const categoriaMaisRecomendada = cardsFiltrados[0].categoria;
-
-            // Reordenar para que todos os cards dessa categoria apareçam primeiro
-            cardsFiltrados = cardsFiltrados.sort((a, b) => {
-                if (a.categoria === categoriaMaisRecomendada && b.categoria !== categoriaMaisRecomendada) {
-                    return -1;
-                }
-                if (a.categoria !== categoriaMaisRecomendada && b.categoria === categoriaMaisRecomendada) {
-                    return 1;
-                }
-                return calcularScore(b) - calcularScore(a);
-            });
-        }
 
         exibirCards(cardsFiltrados);
     }
@@ -312,20 +387,71 @@
         }
     }
 
-    function mostrarProximaPagina() {
-        const categoriaSelecionada = document.getElementById('categoria').value;
-        let cardsFiltrados = cardsData;
+    // Função de IA para responder qual horta recomendar
+    function obterHortaMaiorScore() {
+        let maiorScore = -1;
+        let hortaRecomendada = null;
 
-        if (categoriaSelecionada !== 'todos') {
-            cardsFiltrados = cardsData.filter(card => card.categoria === categoriaSelecionada);
-        }
+        cardsData.forEach(card => {
+            const score = calcularScore(card);
+            if (score > maiorScore) {
+                maiorScore = score;
+                hortaRecomendada = card;
+            }
+        });
 
-        const totalPaginas = Math.ceil(cardsFiltrados.length / itensPorPagina);
-        paginaAtual = (paginaAtual + 1) % totalPaginas;
-
-        exibirCards(cardsFiltrados);
+        return hortaRecomendada ? hortaRecomendada.title : 'Nenhuma horta disponível no momento';
     }
 
+    // Função para abrir/fechar o chat
+    const chatbotBtn = document.getElementById('chatbot-btn');
+    const chatbox = document.getElementById('chatbox');
+    chatbotBtn.addEventListener('click', () => {
+    chatbox.style.display = chatbox.style.display === 'none' ? 'flex' : 'none';
+});
+    // Função para enviar mensagem no chat
+    function enviarMensagem() {
+        const chatBody = document.getElementById('chatbox-body');
+        const input = document.getElementById('chat-input');
+        const mensagem = input.value.trim();
+
+        if (mensagem === '') {
+            return;
+        }
+
+        // Adiciona a mensagem do usuário no chat
+        const userMessage = document.createElement('div');
+        userMessage.style.marginBottom = '10px';
+        userMessage.style.textAlign = 'right';
+        userMessage.innerHTML = `<strong>Você:</strong> ${mensagem}`;
+        chatBody.prepend(userMessage);
+
+        // Limpa o campo de entrada
+        input.value = '';
+
+        // Resposta automática do bot
+        if (mensagem.toLowerCase().includes('qual horta que recomenda para fazer uma doação')) {
+            const hortaRecomendada = obterHortaMaiorScore();
+
+            setTimeout(() => {
+                const botMessage = document.createElement('div');
+                botMessage.style.marginBottom = '10px';
+                botMessage.style.textAlign = 'left';
+                botMessage.innerHTML = `<strong>Bot:</strong> A horta que recomendamos para doação é: <strong>${hortaRecomendada}</strong>`;
+                chatBody.prepend(botMessage);
+            }, 1000);
+        } else {
+            setTimeout(() => {
+                const botMessage = document.createElement('div');
+                botMessage.style.marginBottom = '10px';
+                botMessage.style.textAlign = 'left';
+                botMessage.innerHTML = `<strong>Bot:</strong> Desculpe, não entendi sua pergunta.`;
+                chatBody.prepend(botMessage);
+            }, 1000);
+        }
+    }
+
+    // Carregar os cards automaticamente na inicialização
     filtrarPorCategoria();
 </script>
 
