@@ -2,7 +2,6 @@ from flask import Flask, render_template
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.preprocessing import StandardScaler
 
 app = Flask(__name__)
 
@@ -12,8 +11,8 @@ data = pd.read_csv("Recomendacoes/campanhas.csv")  # Use barra invertida dupla o
 # Dados dos usuários
 user_data = {
     'user_id': [1, 2],
-    'favorites': [[875, 602], [900, 186]],
-    'location': ['PE', 'PE']
+    'favorites': [[458, 602], [900, 186]],
+    'localizacao': ['PE', 'SE']
 }
 
 # Convertendo para DataFrame
@@ -40,9 +39,10 @@ def categoria_favorite(campanha_categoria, favorite_campanhas):
 # Função para recomendar campanhas
 def recommend_campaigns(user_id, df_users, df_campaigns, campaign_similarity):
     user_favorites = df_users[df_users['user_id'] == user_id]['favorites'].values[0]
+    localizacao = df_users[df_users['user_id'] == user_id]['localizacao'].values[0]
     df_campaigns['favorite_similarity'] = df_campaigns['id_campanha'].apply(lambda x: favorite_similarity(user_favorites, x))
-    favorite_campanha = df_campaigns[df_campaigns['id_campanha'].isin(user_favorites)]['Categoria']
-    df_campaigns['favorite_categoria'] = df_campaigns['Categoria'].apply(lambda x: categoria_favorite(x, favorite_campanha.tolist()))
+    users_favorite_campaigns = df_campaigns[df_campaigns['id_campanha'].isin(user_favorites)]['Categoria']
+    df_campaigns['favorite_categoria'] = df_campaigns['Categoria'].apply(lambda x: categoria_favorite(x, users_favorite_campaigns.tolist()))
     
     # Palavras-chave das campanhas favoritas do usuário
     favorite_campaigns = df_campaigns[df_campaigns['id_campanha'].isin(user_favorites)]
@@ -56,14 +56,14 @@ def recommend_campaigns(user_id, df_users, df_campaigns, campaign_similarity):
 
     # Calculando a pontuação final
     df_campaigns['score'] = (df_campaigns['similarity_score'] + df_campaigns['favorite_categoria'] + df_campaigns['views_normalized'] + df_campaigns['favorite_similarity']) / 4
-    
+    filtered_campaigns = df_campaigns[df_campaigns['estado'] == localizacao]
     # Ordenando as campanhas pela pontuação
-    recommendations = df_campaigns.sort_values(by='score', ascending=False)
+    recommendations = filtered_campaigns.sort_values(by='score', ascending=False)
     return recommendations[['id_campanha', 'campanha', 'estado', 'Categoria','Visualizacoes', 'score','imagem']]
 
 @app.route('/')
 def home():
-    recommendations = recommend_campaigns(2, df_users, df_campaigns, campaign_similarity)
+    recommendations = recommend_campaigns(1, df_users, df_campaigns, campaign_similarity)
     # Convertendo o DataFrame para uma lista de dicionários
     recommendations_dict = recommendations.to_dict(orient='records')
     return render_template('index.html', recommendations=recommendations_dict)

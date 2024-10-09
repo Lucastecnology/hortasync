@@ -26,6 +26,7 @@
             {% for recommendation in recommendations %}
             <div class="col-md-4">
                 <div class="card mb-4">
+                    <img src="{{ url_for('static', filename= recommendation['imagem']) }}" class="card-img-top" alt="Imagem da campanha">
                     <div class="card-body">
                         <h5 class="card-title">{{ recommendation['campanha'] }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">ID: {{ recommendation['id_campanha'] }}</h6>

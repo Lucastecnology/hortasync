@@ -1,9 +1,11 @@
-body {
+ody {
     font-family: Arial, sans-serif;
-    margin: 20px;
-    padding: 20px;
-    background-color: #f8f9fa
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    position: relative;
 }
+
 /* Estilo do header e navegação */
 header {
     background-color: #fff;
@@ -39,39 +41,83 @@ nav .active {
     padding: 5px 10px;
     border-radius: 5px;
 }
-.data {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 18px;
-    text-align: left;
+
+/* Estilo do container */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-.data th, .data td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
+
+/* Filtros */
+.filter {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
-.data th {
-    background-color: #f4f4f4;
+
+.filter select,
+.filter button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
 }
+
+/* Cards */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
 .card {
     background-color: #fff;
     border-radius: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.274);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
-.card-body {
-    padding: 20px;
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.301);
 }
+
 .card img {
     width: 100%;
     height: 200px;
     object-fit: cover;
 }
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.301);
+
+.card-content {
+    padding: 15px;
 }
+
+.card-content h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.card-content p {
+    font-size: 1em;
+    color: #000;
+    margin: 5px 0;
+}
+
+.card-content .categoria {
+    font-weight: bold;
+}
+
+.card-content .score {
+    font-weight: bold;
+}
+
 /* Botão de navegação */
 .navigation-buttons {
     margin-top: 20px;
@@ -92,4 +138,77 @@ nav .active {
 
 .navigation-buttons button:hover {
     background-color: #3a8a3a;
- }
+}
+
+/* Estilo do botão de chat IA */
+.chatbot-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(to right, #34a853, #5bc6ff);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilo da aba de chat */
+.chatbox {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    width: 350px;
+    max-width: 90%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: none;
+    flex-direction: column;
+}
+
+.chatbox-header {
+    background-color: #34a853;
+    color: white;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-size: 18px;
+}
+
+.chatbox-body {
+    padding: 10px;
+    height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.chatbox-footer {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.chatbox-footer input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.chatbox-footer button {
+    padding: 10px;
+    background-color: #34a853;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+}
