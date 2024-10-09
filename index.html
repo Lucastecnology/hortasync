@@ -226,7 +226,7 @@
 <body>
 
 <header>
-    <img src="Imagens/Logo2.png" alt="Logo">
+    <img src="static/Imagens/Logo2.png" alt="Logo">
     <nav>
         <a href="#" class="active">Explorar</a>
         <a href="#">Como ajudar</a>
@@ -290,23 +290,23 @@
     };
 
     const cardsData = [
-        { categoria: 'infraestrutura', title: 'Doação de água potável', cliques: 100, doacoes: 50, mediaDoacoesMes: 5, visitantesUnicos: 200, taxaRetorno: 0.5, eventos: 2, img: 'Imagens/Hortas/agua.jpeg' },
-        { categoria: 'infraestrutura', title: 'Construção de poço', cliques: 90, doacoes: 45, mediaDoacoesMes: 4.5, visitantesUnicos: 180, taxaRetorno: 0.45, eventos: 1, img: 'Imagens/Hortas/poco.jpg' },
-        { categoria: 'plantio', title: 'Precisamos de sementes', cliques: 80, doacoes: 30, mediaDoacoesMes: 3, visitantesUnicos: 150, taxaRetorno: 0.3, eventos: 1, img: 'Imagens/Hortas/sementes.jpg' },
-        { categoria: 'plantio', title: 'Cultivo de hortaliças', cliques: 85, doacoes: 35, mediaDoacoesMes: 3.5, visitantesUnicos: 160, taxaRetorno: 0.35, eventos: 2, img: 'Imagens/Hortas/hortalicas.jpg' },
-        { categoria: 'ferramentas', title: 'Precisamos de enxadas', cliques: 120, doacoes: 60, mediaDoacoesMes: 6, visitantesUnicos: 250, taxaRetorno: 0.6, eventos: 3, img: 'Imagens/Hortas/enxadas.png' },
-        { categoria: 'fertilizantes', title: 'Necessitamos de adubo', cliques: 170, doacoes: 100, mediaDoacoesMes: 10, visitantesUnicos: 300, taxaRetorno: 0.9, eventos: 5, img: 'Imagens/Hortas/adubo.jpg' },
-        { categoria: 'mudas', title: 'Precisamos de mudas de maçã', cliques: 920, doacoes: 40, mediaDoacoesMes: 4, visitantesUnicos: 180, taxaRetorno: 0.4, eventos: 2, img: 'Imagens/Hortas/mudasdearvore.png' },
-        { categoria: 'tecnologia', title: 'Precisamos de sistema de irrigação', cliques: 130, doacoes: 70, mediaDoacoesMes: 7, visitantesUnicos: 300, taxaRetorno: 0.7, eventos: 4, img: 'Imagens/Hortas/Irrigacao.jpg' },
-        { categoria: 'tecnologia', title: 'Instalação de sensores de umidade', cliques: 115, doacoes: 65, mediaDoacoesMes: 6.5, visitantesUnicos: 270, taxaRetorno: 0.65, eventos: 3, img: 'Imagens/Hortas/sensoresdeumidade.jpg' },
-        { categoria: 'sustentabilidade', title: 'Precisamos de uma composteira', cliques: 110, doacoes: 55, mediaDoacoesMes: 5.5, visitantesUnicos: 220, taxaRetorno: 0.55, eventos: 2, img: 'Imagens/Hortas/composteira.jpg' },
-        { categoria: 'educacao', title: 'Contratação de um biólogo para aula', cliques: 75, doacoes: 35, mediaDoacoesMes: 3.5, visitantesUnicos: 130, taxaRetorno: 0.35, eventos: 1, img: 'Imagens/Hortas/aulabiologo.jpeg' },
-        { categoria: 'manutencao', title: 'Reparo de cercas', cliques: 520, doacoes: 20, mediaDoacoesMes: 2, visitantesUnicos: 90, taxaRetorno: 0.2, eventos: 0, img: 'Imagens/Hortas/cercashortas.jpg' },
-        { categoria: 'manutencao', title: 'Manutenção de ferramentas', cliques: 60, doacoes: 25, mediaDoacoesMes: 2.5, visitantesUnicos: 95, taxaRetorno: 0.25, eventos: 1, img: 'Imagens/Hortas/ferramentasjardinagens.jpg' },
-        { categoria: 'tecnologia', title: 'Automação de estufas', cliques: 140, doacoes: 80, mediaDoacoesMes: 8, visitantesUnicos: 350, taxaRetorno: 0.8, eventos: 5, img: 'Imagens/Hortas/estufa.jpg' },
-        { categoria: 'ferramentas', title: 'Compra de pás', cliques: 1120, doacoes: 50, mediaDoacoesMes: 5, visitantesUnicos: 230, taxaRetorno: 0.5, eventos: 2, img: 'Imagens/Hortas/pashorta.jpg' },
-        { categoria: 'fertilizantes', title: 'Aquisição de fertilizantes orgânicos', cliques: 85, doacoes: 40, mediaDoacoesMes: 4, visitantesUnicos: 150, taxaRetorno: 0.4, eventos: 1, img: 'Imagens/Hortas/fertilizantes.jpeg' },
-        { categoria: 'mudas', title: 'Plantio de árvores frutíferas', cliques: 95, doacoes: 45, mediaDoacoesMes: 4.5, visitantesUnicos: 190, taxaRetorno: 0.45, eventos: 2, img: 'Imagens/Hortas/mudasfrutiferas.jpg' }
+        { categoria: 'infraestrutura', title: 'Doação de água potável', cliques: 100, doacoes: 50, mediaDoacoesMes: 5, visitantesUnicos: 200, taxaRetorno: 0.5, eventos: 2, img: 'static/Imagens/Hortas/agua.jpeg' },
+        { categoria: 'infraestrutura', title: 'Construção de poço', cliques: 90, doacoes: 45, mediaDoacoesMes: 4.5, visitantesUnicos: 180, taxaRetorno: 0.45, eventos: 1, img: 'static/Imagens/Hortas/poco.jpg' },
+        { categoria: 'plantio', title: 'Precisamos de sementes', cliques: 80, doacoes: 30, mediaDoacoesMes: 3, visitantesUnicos: 150, taxaRetorno: 0.3, eventos: 1, img: 'static/Imagens/Hortas/sementes.jpg' },
+        { categoria: 'plantio', title: 'Cultivo de hortaliças', cliques: 85, doacoes: 35, mediaDoacoesMes: 3.5, visitantesUnicos: 160, taxaRetorno: 0.35, eventos: 2, img: 'static/Imagens/Hortas/hortalicas.jpg' },
+        { categoria: 'ferramentas', title: 'Precisamos de enxadas', cliques: 120, doacoes: 60, mediaDoacoesMes: 6, visitantesUnicos: 250, taxaRetorno: 0.6, eventos: 3, img: 'static/Imagens/Hortas/enxadas.png' },
+        { categoria: 'fertilizantes', title: 'Necessitamos de adubo', cliques: 170, doacoes: 100, mediaDoacoesMes: 10, visitantesUnicos: 300, taxaRetorno: 0.9, eventos: 5, img: 'static/Imagens/Hortas/adubo.jpg' },
+        { categoria: 'mudas', title: 'Precisamos de mudas de maçã', cliques: 920, doacoes: 40, mediaDoacoesMes: 4, visitantesUnicos: 180, taxaRetorno: 0.4, eventos: 2, img: 'static/Imagens/Hortas/mudasdearvore.png' },
+        { categoria: 'tecnologia', title: 'Precisamos de sistema de irrigação', cliques: 130, doacoes: 70, mediaDoacoesMes: 7, visitantesUnicos: 300, taxaRetorno: 0.7, eventos: 4, img: 'static/Imagens/Hortas/Irrigacao.jpg' },
+        { categoria: 'tecnologia', title: 'Instalação de sensores de umidade', cliques: 115, doacoes: 65, mediaDoacoesMes: 6.5, visitantesUnicos: 270, taxaRetorno: 0.65, eventos: 3, img: 'static/Imagens/Hortas/sensoresdeumidade.jpg' },
+        { categoria: 'sustentabilidade', title: 'Precisamos de uma composteira', cliques: 110, doacoes: 55, mediaDoacoesMes: 5.5, visitantesUnicos: 220, taxaRetorno: 0.55, eventos: 2, img: 'static/Imagens/Hortas/composteira.jpg' },
+        { categoria: 'educacao', title: 'Contratação de um biólogo para aula', cliques: 75, doacoes: 35, mediaDoacoesMes: 3.5, visitantesUnicos: 130, taxaRetorno: 0.35, eventos: 1, img: 'static/Imagens/Hortas/aulabiologo.jpeg' },
+        { categoria: 'manutencao', title: 'Reparo de cercas', cliques: 520, doacoes: 20, mediaDoacoesMes: 2, visitantesUnicos: 90, taxaRetorno: 0.2, eventos: 0, img: 'static/Imagens/Hortas/cercashortas.jpg' },
+        { categoria: 'manutencao', title: 'Manutenção de ferramentas', cliques: 60, doacoes: 25, mediaDoacoesMes: 2.5, visitantesUnicos: 95, taxaRetorno: 0.25, eventos: 1, img: 'static/Imagens/Hortas/ferramentasjardinagens.jpg' },
+        { categoria: 'tecnologia', title: 'Automação de estufas', cliques: 140, doacoes: 80, mediaDoacoesMes: 8, visitantesUnicos: 350, taxaRetorno: 0.8, eventos: 5, img: 'static/Imagens/Hortas/estufa.jpg' },
+        { categoria: 'ferramentas', title: 'Compra de pás', cliques: 1120, doacoes: 50, mediaDoacoesMes: 5, visitantesUnicos: 230, taxaRetorno: 0.5, eventos: 2, img: 'static/Imagens/Hortas/pashorta.jpg' },
+        { categoria: 'fertilizantes', title: 'Aquisição de fertilizantes orgânicos', cliques: 85, doacoes: 40, mediaDoacoesMes: 4, visitantesUnicos: 150, taxaRetorno: 0.4, eventos: 1, img: 'static/Imagens/Hortas/fertilizantes.jpeg' },
+        { categoria: 'mudas', title: 'Plantio de árvores frutíferas', cliques: 95, doacoes: 45, mediaDoacoesMes: 4.5, visitantesUnicos: 190, taxaRetorno: 0.45, eventos: 2, img: 'static/Imagens/Hortas/mudasfrutiferas.jpg' }
     ];
 
     let paginaAtual = 0;

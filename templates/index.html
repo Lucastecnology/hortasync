@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomendações</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    
+</head>
+<header>
+    <img src="{{ url_for('static', filename='Imagens/Logo2.png') }}" alt="Logo">
+    <nav>
+        <a href="#" class="active">Explorar</a>
+        <a href="#">Como ajudar</a>
+        <a href="#">Descubra</a>
+        <a href="#">Como funciona</a>
+        <a href="#">Buscar</a>
+        <a href="#">Minha conta</a>
+    </nav>
+</header>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Recomendações de Campanhas</h1>
+        <div class="row">
+            {% for recommendation in recommendations %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ recommendation['campanha'] }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">ID: {{ recommendation['id_campanha'] }}</h6>
+                        <p class="card-text">{{ recommendation['Categoria'] }}</p>
+                        <p class="card-text">Estado: {{ recommendation['estado'] }}</p>
+                        <p class="card-text">Visualizações: {{ recommendation['Visualizacoes'] }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

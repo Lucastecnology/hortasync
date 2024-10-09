@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f8f9fa
+}
+/* Estilo do header e navegação */
+header {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header img {
+    height: 60px;
+    width: auto;
+}
+
+nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+    padding: 5px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    color: rgb(34, 179, 42);
+    text-decoration: underline;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+nav .active {
+    background-color: #4bac4c;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.data {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+.data th, .data td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+.data th {
+    background-color: #f4f4f4;
+}
+.card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.274);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-body {
+    padding: 20px;
+}
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.301);
+}
+/* Botão de navegação */
+.navigation-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.navigation-buttons button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: none;
+    background-color: #4bac4c;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navigation-buttons button:hover {
+    background-color: #3a8a3a;
+ }
